@@ -7,13 +7,13 @@ GREEN="\033[32m"
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >& /dev/null && pwd)"
 BUILD_DIR="$(mktemp -d)"
-REFERENCE=${DOTTY_REFERENCE:-}
+REFERENCE="master"
 DOTTY_VERSION=""
 
 if [ ! -z $REFERENCE ]; then
     echo -e "${GREEN}Building Dotty...${RESET}"
     pushd "$BUILD_DIR"
-    git clone https://github.com/lampepfl/dotty.git .
+    git clone https://github.com/mbloms/dotty.git .
     git fetch origin "$REFERENCE"
     git checkout -qf FETCH_HEAD
     git submodule update --init --recursive
